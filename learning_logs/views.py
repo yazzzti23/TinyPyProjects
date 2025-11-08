@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Topic
+from .forms import TopicForm
 
-# Create your views here.
+
 def index(request):
     """the home page for learning logs app"""
     return render(request, 'learning_logs/index.html')
@@ -19,3 +20,15 @@ def topic(request,topic_id):
     context = {'topic':topic,'entries':entries}
 
     return render(request, 'learning_logs/topic.html',context)
+
+def new_topic(request):
+    """add a new topic"""
+    if request.method != 'POST':
+        #no data submitted; create a blank form.
+        form = TopicForm()
+    else:
+        #post data submitted; process data.
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topics')

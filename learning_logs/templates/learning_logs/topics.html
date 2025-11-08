@@ -4,7 +4,8 @@
 <ul>
     {%for topic in topics%}
     <li>
-        {{topic.text}}
+        <a href="{% url 'learning_logs:topic' topic.id%}">
+        {{topic.text}}</a>
     </li>
     {% empty %} <!--tells django what to do when there are no items in the list-->
     <li>
