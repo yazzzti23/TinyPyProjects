@@ -1,0 +1,8 @@
+<!--cause we will include this template on every page , therefore the title is a link to the home page -->
+<p>
+    <a href="{%url 'learning_logs:index'%}">Learning Log</a>
+    -
+    <a href="{%url 'learning_logs:topics'%}">Topics</a>
+</p>
+
+{% block content%}{%endblock content%}
