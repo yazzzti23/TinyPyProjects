@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+<p>
+    <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+</p>
+
+<p>Add a new entry:</p>
+<form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'><!--tells django where to send the form data when you click submit , it sends it to the edit entry view -->
+    {% csrf_token %}
+    {{form.as_div}}
+    <button name="submit">Add entry</button>
+</form>
+
+{% endblock content %}
